@@ -67,8 +67,8 @@ add_library(maat_maat
   src/third-party/sleigh/native/reg_translator.cpp
   src/third-party/sleigh/native/sleigh_interface.cpp
 )
-add_library(maat::maat ALIAS maat_maat)
 
+add_library(maat::maat ALIAS maat_maat)
 if(NOT BUILD_SHARED_LIBS)
   target_compile_definitions(maat_maat PUBLIC MAAT_STATIC_DEFINE)
 endif()
@@ -156,7 +156,7 @@ add_custom_command(
 # Allow user to override sleigh compiler to support cross-compilation. Default
 # location is the one imported when we found the sleigh package
 if(CMAKE_CROSSCOMPILING)
-  find_program(maat_SLEIGH_COMPILER "sleigh_opt"
+  find_program(maat_SLEIGH_COMPILER "sleigh"
     DOC "Sleigh compiler executable"
   )
   if(NOT maat_SLEIGH_COMPILER)
@@ -213,7 +213,7 @@ endif()
 # paths for locating data files.
 configure_file(generate/src/include/maat/config.hpp.in "${PROJECT_BINARY_DIR}/include/maat/config.hpp" @ONLY)
 target_include_directories(maat_maat PUBLIC "$<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>")
-
+add_subdirectory(tools)
 # ---- Developer mode ----
 
 if(NOT maat_DEVELOPER_MODE)

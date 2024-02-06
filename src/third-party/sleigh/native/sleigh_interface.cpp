@@ -4,9 +4,9 @@
 #include <assert.h>
 #include <stdbool.h>
 
-#include <sleigh/loadimage.hh>
-#include <sleigh/sleigh.hh>
-#include <sleigh/types.h>
+#include <ghidra/loadimage.hh>
+#include <ghidra/sleigh.hh>
+#include <ghidra/types.h>
 
 #include "maat/ir.hpp"
 #include "maat/exception.hpp"
@@ -22,7 +22,7 @@
 #else
 #define LOG(fmt, ...) do {} while (0)
 #endif
-
+using namespace ghidra;
 namespace maat
 {
 
@@ -287,7 +287,7 @@ public:
     DocumentStorage     m_document_storage;
     Document           *m_document;
     Element            *m_tags;
-    unique_ptr<Sleigh>  m_sleigh;
+    std::unique_ptr<Sleigh>  m_sleigh;
     string              m_register_name_cache;
     TmpCache            tmp_cache;
     maat::Arch::Type    arch;
